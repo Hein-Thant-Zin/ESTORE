@@ -21,8 +21,8 @@ export default function NavBar() {
   });
 
   // if (isPending) return <p>Loading</p>;
-  if (isError) return <p>{error.message}</p>;
-  console.log(categories);
+  // if (isError) return <p>{error.message}</p>;
+  // console.log(categories);
   return (
     <header className="border-b ">
       <div className="container flex items-center justify-between px-4 mx-auto lg:px-8 h-14">
