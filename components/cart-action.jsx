@@ -14,9 +14,12 @@ import useHasMounted from "@/hooks/useHasMounted";
 import { useEffect, useState } from "react";
 import { ShoppingCart } from "lucide-react";
 import { useCartContext } from "./contexts/CartContext";
+import { MinusCircle } from "lucide-react";
+import { PlusCircle } from "lucide-react";
 
 export default function CartAction() {
-  const { totalQty } = useCartContext();
+  const { totalQty, cartItems } = useCartContext();
+  console.log(cartItems);
   const hasMounted = useHasMounted();
 
   if (!hasMounted) return null;
@@ -32,10 +35,33 @@ export default function CartAction() {
         </SheetTrigger>
         <SheetContent>
           <SheetHeader>
-            <SheetTitle>Are you sure absolutely sure?</SheetTitle>
+            <SheetTitle>My Cart</SheetTitle>
             <SheetDescription>
-              This action cannot be undone. This will permanently delete your
-              account and remove your data from our servers.
+              {cartItems.length < 1 ? (
+                <p>
+                  <ShoppingBag className="my-3" width={40} height={40} />
+                  Do some shopping
+                </p>
+              ) : (
+                <ul>
+                  {cartItems.map((item) => (
+                    <li key={item.id}>
+                      <h3>{item.name}</h3>
+                      <p>$ {item.price}</p>
+                      <div className="flex items-center justify-between gap-4 p-4 border-b">
+                        <p>Quantity</p>
+                        <button>
+                          <MinusCircle />
+                        </button>
+                        <span>{item.quantity}</span>
+                        <button>
+                          <PlusCircle />
+                        </button>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </SheetDescription>
           </SheetHeader>
         </SheetContent>
