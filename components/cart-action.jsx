@@ -26,7 +26,7 @@ export default function CartAction() {
       <Sheet>
         <SheetTrigger className="relative flex items-center gap-2 p-2 border rounded shadow">
           <ShoppingCart className="w-4 h-4 " color="black" />
-          <span className="absolute flex items-center justify-center w-4 h-4 text-xs text-white bg-black rounded -top-2 -right-2">
+          <span className="absolute flex items-center justify-center w-4 h-4 text-xs text-white bg-blue-600 rounded -top-2 -right-2">
             {totalQty}
           </span>
         </SheetTrigger>
