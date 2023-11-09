@@ -3,7 +3,7 @@ import { ArrowLeftIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Gallery() {
+export default function Gallery({ imageUrl, name }) {
   const btnClassName =
     "items-center justify-center h-full px-6 flex  transition-all ease-in-out hover:scale-110 hover:text-black ";
 
@@ -11,8 +11,8 @@ export default function Gallery() {
     <div className="relative aspect-square  h-full w-full max-h-[550px] overflow-hidden">
       <Image
         className="object-contain "
-        src="https://picsum.photos/400/600"
-        alt="Product Label"
+        src={imageUrl}
+        alt={name}
         fill
         priority={true}
       />

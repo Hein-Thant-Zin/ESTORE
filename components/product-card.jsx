@@ -22,7 +22,7 @@ export default function ProductCard({ product }) {
   return (
     <article
       onClick={handleClick}
-      className="max-w-md mx-auto space-y-3 text-center cursor-pointer group"
+      className="w-64 p-4 mx-auto my-2 space-y-3 text-center transition cursor-pointer hover:shadow-lg hover:border group"
     >
       <div className="relative aspect-square rounded-xl">
         <Image
@@ -37,20 +37,19 @@ export default function ProductCard({ product }) {
           onClick={preventEventBubbling}
           className="absolute flex items-center justify-center w-full space-x-1 transition opacity-0 bottom-5 group-hover:opacity-100"
         >
-          <Button variant="outline">
-            <Expand size={20} className="text-gray-600"></Expand>
-          </Button>
-          <Button variant="outline">
+          <Button className="transition" variant="outline">
             <ShoppingCart size={20} className="text-gray-600"></ShoppingCart>
           </Button>
         </div>
       </div>
       <div>
         <p>{name}</p>
-        <p>{product?.name}</p>
+        <p>{category?.name}</p>
       </div>
 
-      <div>${price}</div>
+      <div>
+        <p>${price}</p>
+      </div>
     </article>
   );
 }
