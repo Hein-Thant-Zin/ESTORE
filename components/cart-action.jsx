@@ -18,7 +18,7 @@ import { MinusCircle } from "lucide-react";
 import { PlusCircle } from "lucide-react";
 
 export default function CartAction() {
-  const { totalQty, cartItems } = useCartContext();
+  const { totalQty, cartItems, onAdd, onRemove } = useCartContext();
   console.log(cartItems);
   const hasMounted = useHasMounted();
 
@@ -50,11 +50,11 @@ export default function CartAction() {
                       <p>$ {item.price}</p>
                       <div className="flex items-center justify-between gap-4 p-4 border-b">
                         <p>Quantity</p>
-                        <button>
+                        <button onClick={() => onRemove(item)}>
                           <MinusCircle />
                         </button>
                         <span>{item.quantity}</span>
-                        <button>
+                        <button onClick={() => onAdd(item, 1)}>
                           <PlusCircle />
                         </button>
                       </div>
