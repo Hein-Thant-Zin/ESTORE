@@ -18,12 +18,22 @@ import { MinusCircle } from "lucide-react";
 import { PlusCircle } from "lucide-react";
 
 export default function CartAction() {
-  const { totalQty, cartItems, onAdd, onRemove } = useCartContext();
+  const { totalQty, cartItems, onAdd, onRemove, totalPrice } = useCartContext();
   console.log(cartItems);
   const hasMounted = useHasMounted();
 
   if (!hasMounted) return null;
 
+  async function handleCheckout() {
+    const res = await fetch("/api/stripe", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(cartItems),
+    });
+    const data = res.json();
+  }
   return (
     <div className="flex items-center gap-4">
       <Sheet>
@@ -47,7 +57,7 @@ export default function CartAction() {
                   {cartItems.map((item) => (
                     <li key={item.id}>
                       <h3>{item.name}</h3>
-                      <p>$ {item.price}</p>
+                      <p>For one item $ {item.price}</p>
                       <div className="flex items-center justify-between gap-4 p-4 border-b">
                         <p>Quantity</p>
                         <button onClick={() => onRemove(item)}>
@@ -62,6 +72,10 @@ export default function CartAction() {
                   ))}
                 </ul>
               )}
+              <div className="py-2">
+                <p>Total ${totalPrice}</p>
+              </div>
+              <Button onClick={handleCheckout}>Proceed to Checkout</Button>
             </SheetDescription>
           </SheetHeader>
         </SheetContent>

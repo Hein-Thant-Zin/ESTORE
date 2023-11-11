@@ -1,27 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import { Toaster } from "react-hot-toast";
 
 const CartContext = createContext();
-
-// export function CartContextProvider() {
-//   function onAdd(product, qty) {
-//     setTotalPrice((prevPrice) => prevPrice + product.price * qty);
-
-//     setTotalQty((prevQty) => prevQty + qty);
-
-//     const productInCart = cartItems.find((item) => item.id === product.id);
-//     if (productInCart) {
-//       const newCartItems = cartItems.map((item) =>
-//         productInCart.id === item.id
-
-//           : item
-//       );
-//       setCartItems(newCartItems);
-//     } else {
-//       setCartItems([...cartItems, { ...product, quantity: qty }]);
-//     }
-//   }
-//   return <CartContext.Provider>{children}</CartContext.Provider>;
-// }
 
 export function CartContextProvider({ children }) {
   const [cartItems, setCartItems] = useState([]);
@@ -73,6 +53,7 @@ export function CartContextProvider({ children }) {
     <CartContext.Provider
       value={{ cartItems, totalPrice, totalQty, onAdd, onRemove }}
     >
+      <Toaster />
       {children}
     </CartContext.Provider>
   );
